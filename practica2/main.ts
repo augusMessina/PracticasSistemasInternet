@@ -48,10 +48,9 @@ router
         plazas: value.plazas,
         ocupado: false
       };
-      const id: (CarSchema | undefined) = await db
+      const carInsert: (CarSchema | undefined) = await db
         .collection<CarSchema>("Cabify")
         .insertOne(car as CarSchema);
-      car.id = id?.toString();
       context.response.body = car;
     }
     else{
@@ -66,7 +65,7 @@ router
         _id: new ObjectId(context.params.id)
       });
       if(!checkCar?.ocupado){
-        const count = await db.collection<CarSchema>("Cabify").deleteOne({
+        const count: (CarSchema | undefined) = await db.collection<CarSchema>("Cabify").deleteOne({
           _id: new ObjectId(context.params.id),
         });
         if (count) {
@@ -110,7 +109,7 @@ router
         ocupado: false
       });
     if (checkCar) {
-      const car = await db.collection<CarSchema>("Cabify").updateOne(
+      const car: (CarSchema | undefined) = await db.collection<CarSchema>("Cabify").updateOne(
         { _id: checkCar._id },
         {
           $set: {
