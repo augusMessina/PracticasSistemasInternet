@@ -7,16 +7,11 @@ type Slot{
   available: Boolean!
   dni: String
 }
-type Response{
-  message: String!
-  slot: Slot
-}
 type Query{
-    getSlots: [Slot!]!
-    availableSlots(year: Int!, month: Int!): [Slot!]!
+    availableSlots(year: Int!, month: Int!, day: Int): [Slot!]!
 }
 type Mutation{
-  removeSlot(year: Int!, month: Int!, day: Int!, hour: Int!): Response!
-  addSlot(year: Int!, month: Int!, day: Int!, hour: Int!): Response!
-  bookSlot(year: Int!, month: Int!, day: Int!, hour: Int!, dni: String!): Response!
+  removeSlot(year: Int!, month: Int!, day: Int!, hour: Int!): Slot!
+  addSlot(year: Int!, month: Int!, day: Int!, hour: Int!): Slot!
+  bookSlot(year: Int!, month: Int!, day: Int!, hour: Int!, dni: String!): Slot!
 }`;
